@@ -6,17 +6,20 @@ using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshFilter), typeof(MeshCollider))]
 public class CustomMesh : MonoBehaviour
 {
     [SerializeField] private Transform leftPivot;
     [SerializeField] private Transform rightPivot;
     [SerializeField] private Transform moveD;
     private MeshFilter meshFilter;
+    private MeshCollider meshCollider;
+    
 
     private void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
+        meshCollider = GetComponent<MeshCollider>();
     }
 
     private void Update()
@@ -147,5 +150,6 @@ public class CustomMesh : MonoBehaviour
         }
 
         meshFilter.mesh = mesh;
+        meshCollider.sharedMesh = mesh;
     }
 }
